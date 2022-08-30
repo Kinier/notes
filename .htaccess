@@ -1,0 +1,11 @@
+RewriteEngine On
+
+# Stop processing if already in the /public directory
+RewriteRule ^static/ - [L]
+
+# Static resources if they exist
+RewriteCond %{DOCUMENT_ROOT}/static/$1 -f
+RewriteRule (.+) static/$1 [L]
+
+# Route all other requests
+RewriteRule (.*) index.php?path=$1 [L,QSA]
