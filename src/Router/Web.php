@@ -3,6 +3,7 @@
 namespace App\Router;
 
 
+
 class Web
 {
 
@@ -30,9 +31,12 @@ class Web
      * @param $method
      *
      */
-    public function get($path, $controller, $method)
+    public function get($path, $controller, $method, $middleware = null)
     {
         if ($this->requestType === 'GET' && $this->requestPath === $path) {
+            if ($middleware) call_user_func($middleware['middlewareFunction'], $middleware['arg']);
+
+
             $controller::$method();
             $this->success = true;
         }
@@ -44,18 +48,23 @@ class Web
      * @param $controller
      * @param $method
      */
-    public function post($path, $controller, $method)
+    public function post($path, $controller, $method, $middleware = null)
     {
         if ($this->requestType === 'POST' && $this->requestPath === $path) {
+            if ($middleware) call_user_func($middleware['middlewareFunction'], $middleware['arg']);
+
             $controller::$method();
             $this->success = true;
         }
     }
 
 
-    public function delete($path, $controller, $method)
+    public function delete($path, $controller, $method, $middleware = null)
     {
         if ($this->requestType === 'DELETE' && $this->requestPath === $path) {
+            if ($middleware) call_user_func($middleware['middlewareFunction'], $middleware['arg']);
+
+
             $controller::$method();
             $this->success = true;
         }
@@ -66,6 +75,7 @@ class Web
      */
     public function done()
     {
+
         if ($this->success === false) {
             $this->sendCustomResponse();
         }
@@ -73,7 +83,8 @@ class Web
 
     private function sendCustomResponse(string $header = 'Location: /nopage', string $code = '404')
     {
-        header($header, true, $code);
+        var_dump($header);
+        header($header);
         die();
     }
 }
