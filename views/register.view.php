@@ -4,14 +4,23 @@
 include_once __DIR__ . '/components/head.php'; ?>
 <body>
 
-<div class="main">
+<div class="main center">
     <header>
-        <div>Create note</div>
+        <div>
+            <a href="/register">register</a>
+        </div>
+        <div>
+            <a href="/login">login</a>
+        </div>
     </header>
 
-    <div class="register-form">
-
-    </div>
+    <form class="form register-form " method="post" action="/auth/register" id="register-form">
+        <label for="email">Email</label>
+        <input name="email" type="email" id="email"/>
+        <label for="password">Password</label>
+        <input name="password" type="password" id="password">
+        <input name="submit" type="submit" value="register"/>
+    </form>
 </div>
 
 <?php
