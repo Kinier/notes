@@ -1,3 +1,6 @@
+*{
+    font-family: Corbel, Serif,sans-serif;
+}
 body{
     margin: 0;
     background-color: #2d2c2d;
@@ -7,6 +10,10 @@ body{
     display: flex;
     min-height: 80vh;
     flex-flow: column wrap;
+}
+
+.center{ /* center elements inside this block */
+    align-items: center;
 }
 
 .notes{
@@ -58,3 +65,24 @@ header > div {
 footer{
     display: flex;
 }
+
+
+
+/*
+
+FORM BELOW
+
+
+ */
+
+.form{
+    display: flex;
+    flex-flow: column;
+    width: 35%;
+    height: fit-content;
+}
+
+.form > input{
+    margin-bottom: 50px;
+}
+
