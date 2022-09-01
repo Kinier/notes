@@ -67,6 +67,22 @@ footer{
 }
 
 
+.note-create{
+    display: flex;
+    flex-flow: column;
+    height: 400px;
+    width: 50%;
+}
+
+.note-create__title{
+    display: flex;
+}
+
+.note-create__text{
+    display: flex;
+    height: 50%;
+}
+
 
 /*
 
