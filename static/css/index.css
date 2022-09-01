@@ -31,10 +31,47 @@ body{
     min-width: 100px;
     align-items: center;
     flex-flow: column wrap;
+    max-width: 200px;
+    max-height: 200px;
+    cursor: pointer;
+
+    overflow: hidden; /* idk how i should solve this maybe later */
+    text-overflow: clip;
+}
+.note-preview{
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+
+}
+
+.note-preview__title{
+    margin-bottom: 50px;
+    display: flex;
+    width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+.note-preview__text{
+    margin-bottom: 50px;
+    display: flex;
+    width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
 }
 
 .note > div {
     display: flex;
+    overflow: hidden;
+    text-overflow: clip;
 
 }
 
@@ -63,7 +100,7 @@ header > div {
 }
 
 footer{
-    display: flex;
+    text-align: center;
 }
 
 
