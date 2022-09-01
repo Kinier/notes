@@ -1,3 +1,3 @@
 <footer>
-    Footer
+    kiniers notes
 </footer>
