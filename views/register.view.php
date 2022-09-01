@@ -3,7 +3,6 @@
 <?php
 include_once __DIR__ . '/components/head.php'; ?>
 <body>
-
 <div class="main center">
     <header>
         <div>
@@ -22,6 +21,7 @@ include_once __DIR__ . '/components/head.php'; ?>
         <input name="submit" type="submit" value="register"/>
     </form>
 </div>
+<script src="/static/js/form.js" type="module"></script>
 
 <?php
 include_once __DIR__ . '/components/footer.php'; ?>
