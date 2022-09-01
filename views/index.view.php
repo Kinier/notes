@@ -4,10 +4,11 @@
 include_once __DIR__ . '/components/head.php'; ?>
 <body>
 
+
 <div class="main">
     <header>
         <div><a href="/note/new">Create note</a></div>
-        <div id="exit-account" ><a href="/auth/logout">exit account</a> </div>
+        <div id="exit-account"><a href="/auth/logout">exit account</a></div>
     </header>
 
     <div class="notes">
@@ -15,7 +16,7 @@ include_once __DIR__ . '/components/head.php'; ?>
         if (isset($data)) {
             foreach ($data['notes'] as $note) {
                 ?>
-                <div class="note">
+                <div class="note" id="<?= $note['id'] ?>">
                     <div class="note__title"><?= $note['title'] ?> </div>
                     <div class="note__text"><?= $note['text'] ?> </div>
                 </div>
@@ -25,6 +26,7 @@ include_once __DIR__ . '/components/head.php'; ?>
         ?>
     </div>
 </div>
+<script src="/static/js/noteClickHandle.js" type="module"></script>
 
 <?php
 include_once __DIR__ . '/components/footer.php'; ?>
