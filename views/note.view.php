@@ -13,9 +13,9 @@ include_once __DIR__ . '/components/head.php'; ?>
     <form class="note-create" name="note-create" id="note-create" method="post">
 
         <label for="title-create">Title</label>
-        <textarea class="note-create__title" id="title-create" form="note-create" name="title"></textarea>
+        <textarea  cols='60' rows="5" class="note-create__title" id="title-create" form="note-create" name="title"></textarea>
         <label for="text-create">Text</label>
-        <textarea class="note-create__text" id="text-create" form="note-create" name="text"></textarea>
+        <textarea cols='60' rows="10" class="note-create__text" id="text-create" form="note-create" name="text"></textarea>
         <input type="submit" value="Create" name="submit"/>
     </form>
 </div>
