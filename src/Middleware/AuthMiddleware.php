@@ -7,7 +7,7 @@ class AuthMiddleware{
      */
     public static function isUser(string $location)
     {
-        if (!key_exists($_SESSION['user']['id'])){
+        if (!isset($_SESSION['user'])){
             header("Location: $location");
             die();
         }
