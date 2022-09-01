@@ -19,4 +19,9 @@ $router->post('/auth/login', \App\Controllers\Auth\AuthController::class, 'login
 $router->get('/auth/logout', \App\Controllers\Auth\AuthController::class, 'logout',
              ['middlewareFunction' => 'App\Middleware\AuthMiddleware::isUser', 'arg' => 'login']);
 
+$router->get('/note/new', \App\Controllers\NoteController::class, 'createPage',
+             ['middlewareFunction' => 'App\Middleware\AuthMiddleware::isUser', 'arg' => 'login']);
+
+$router->post('/note/new/create', \App\Controllers\NoteController::class, 'create',
+             ['middlewareFunction' => 'App\Middleware\AuthMiddleware::isUser', 'arg' => 'login']);
 $router->done();
