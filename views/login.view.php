@@ -14,7 +14,7 @@ include_once __DIR__ . '/components/head.php'; ?>
         </div>
     </header>
 
-    <form class="form register-form " method="post" action="/auth/login" id="login-form">
+    <form class="form register-form " method="post" action="#" id="login-form">
         <label for="email">Email</label>
         <input name="email" type="email" id="email"/>
         <label for="password">Password</label>
@@ -22,6 +22,7 @@ include_once __DIR__ . '/components/head.php'; ?>
         <input name="submit" type="submit" value="login"/>
     </form>
 </div>
+<script src="/static/js/form.js" type="module"></script>
 
 <?php
 include_once __DIR__ . '/components/footer.php'; ?>
