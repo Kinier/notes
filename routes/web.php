@@ -15,5 +15,8 @@ $router->get('/register', \App\Controllers\UserController::class, 'register');
 $router->get('/login', \App\Controllers\UserController::class, 'login');
 
 $router->post('/auth/register', \App\Controllers\Auth\AuthController::class, 'register');
+$router->post('/auth/login', \App\Controllers\Auth\AuthController::class, 'login');
+$router->get('/auth/logout', \App\Controllers\Auth\AuthController::class, 'logout',
+             ['middlewareFunction' => 'App\Middleware\AuthMiddleware::isUser', 'arg' => 'login']);
 
 $router->done();
