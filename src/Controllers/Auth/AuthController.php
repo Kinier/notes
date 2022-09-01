@@ -22,10 +22,11 @@ class AuthController
             "INSERT INTO `user`(`password`, `email`) VALUES (?,?)"
         );
         $result = $statementObject->execute([$password, $email]);
-
         if ($result){
             $_SESSION['user']['email'] = $email;
             $_SESSION['user']['password'] = $password;
+            $_SESSION['user']['id'] = $connection->lastInsertId();
+
             Response::jsonOK();
         }else{
 //            Response::page('login',['errors'=>['server'=>'user with such parameters already exist']]);
@@ -52,6 +53,7 @@ class AuthController
         if ($user){
             $_SESSION['user']['email'] = $user['email'];
             $_SESSION['user']['password'] = $user['password'];
+            $_SESSION['user']['id'] = $user['id'];
             Response::jsonOK();
         }else{
             Response::jsonError();
