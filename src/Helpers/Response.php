@@ -48,4 +48,11 @@ class Response
         $page = sprintf("%s%s.view.php", self::ERROR_VIEWS_PATH, $page);
         include $page;
     }
+
+
+    public static function redirect($page)
+    {
+        header("Location: $page");
+        exit();
+    }
 }
