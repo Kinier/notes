@@ -16,6 +16,8 @@ class AuthController
         $email = $data['email'];
         $password = $data['password'];
 
+        $password = password_hash($password, PASSWORD_BCRYPT);
+
         $db = new Database();
         $connection = $db->connect();
         $statementObject = $connection->prepare(
@@ -43,14 +45,17 @@ class AuthController
         $email = $data['email'];
         $password = $data['password'];
 
+
+
+
         $db = new Database();
         $connection = $db->connect();
         $statementObject = $connection->prepare(
-            "SELECT * FROM `user` WHERE email=? AND password=?"
+            "SELECT * FROM `user` WHERE email=?"
         );
-        $statementObject->execute([$email, $password]);
+        $statementObject->execute([$email]);
         $user = $statementObject->fetch();
-        if ($user){
+        if ($user && password_verify($password, $user['password'])){
             $_SESSION['user']['email'] = $user['email'];
             $_SESSION['user']['password'] = $user['password'];
             $_SESSION['user']['id'] = $user['id'];
