@@ -3,6 +3,8 @@
 namespace App\Controllers;
 use App\Helpers\Response;
 use App\Config\Database;
+use App\Models\NoteModel;
+
 use PDO;
 
 class NoteController{
@@ -17,8 +19,8 @@ class NoteController{
 
         $db = new Database();
         $connection = $db->connect();
-        $statementObject = $connection->prepare("INSERT INTO `note`(`title`, `text`, `user_id`) VALUES (?,?,?)"); // FIXME WHERE user_id = `$_SESSION[userId]`
-        $result = $statementObject->execute([$title, $text, $userId]);
+        $noteModel = new NoteModel($connection);
+        $result = $noteModel->createNote($title, $text, $userId);
         if ($result){
             Response::jsonOK();
         }else{
@@ -32,9 +34,8 @@ class NoteController{
         $userId = $_SESSION['user']['id'];
         $db = new Database();
         $connection = $db->connect();
-        $statementObject = $connection->prepare("SELECT * FROM note WHERE user_id = ?"); // FIXME WHERE user_id = `$_SESSION[userId]`
-        $statementObject->execute([$userId]);
-        $notes = $statementObject->fetchAll();
+        $noteModel = new NoteModel($connection);
+        $notes = $noteModel->getAllNotesByUserId($userId);
         Response::page('index', ["notes"=>$notes]);
     }
 
@@ -50,9 +51,8 @@ class NoteController{
 
         $db = new Database();
         $connection = $db->connect();
-        $statementObject = $connection->prepare("SELECT * FROM note WHERE id = ? and user_id = ?"); // FIXME WHERE user_id = `$_SESSION[userId]`
-        $statementObject->execute([$noteId, $userId]);
-        $note = $statementObject->fetch();
+        $noteModel = new NoteModel($connection);
+        $note = $noteModel->getUserNoteById($userId, $noteId);
 
         Response::page("preview", ['note'=>$note]);
     }
