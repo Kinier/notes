@@ -11,8 +11,8 @@ $router->get('/',
              'index',
              ['middlewareFunction' => 'App\Middleware\AuthMiddleware::isUser', 'arg' => 'register']);
 $router->get('/nopage', \App\Controllers\ErrorController::class, 'nopage');
-$router->get('/register', \App\Controllers\UserController::class, 'register');
-$router->get('/login', \App\Controllers\UserController::class, 'login');
+$router->get('/register', \App\Controllers\UserController::class, 'registerPage');
+$router->get('/login', \App\Controllers\UserController::class, 'loginPage');
 
 $router->post('/auth/register', \App\Controllers\Auth\AuthController::class, 'register');
 $router->post('/auth/login', \App\Controllers\Auth\AuthController::class, 'login');

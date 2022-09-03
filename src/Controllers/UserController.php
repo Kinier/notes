@@ -5,20 +5,20 @@ namespace App\Controllers;
 use App\Helpers\Response;
 
 class UserController{
-    public static function profile()
+    public static function profilePage()
     {
         Response::page('/profile');
     }
 
 
-    public static function register()
+    public static function registerPage()
     {
         Response::page('register');
     }
 
 
 
-    public static function login()
+    public static function loginPage()
     {
         Response::page('login');
     }
