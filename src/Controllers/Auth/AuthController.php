@@ -6,6 +6,8 @@ namespace App\Controllers\Auth;
 use App\Config\Database;
 use App\Helpers\Response;
 
+use App\Models\UserModel;
+
 class AuthController
 {
     public static function register()
@@ -20,10 +22,8 @@ class AuthController
 
         $db = new Database();
         $connection = $db->connect();
-        $statementObject = $connection->prepare(
-            "INSERT INTO `user`(`password`, `email`) VALUES (?,?)"
-        );
-        $result = $statementObject->execute([$password, $email]);
+        $userModel = new UserModel($connection);
+        $result = $userModel->createUser($email,$password);
         if ($result){
             $_SESSION['user']['email'] = $email;
             $_SESSION['user']['password'] = $password;
@@ -50,11 +50,8 @@ class AuthController
 
         $db = new Database();
         $connection = $db->connect();
-        $statementObject = $connection->prepare(
-            "SELECT * FROM `user` WHERE email=?"
-        );
-        $statementObject->execute([$email]);
-        $user = $statementObject->fetch();
+        $userModel = new UserModel($connection);
+        $user = $userModel->getUserByEmail($email);
         if ($user && password_verify($password, $user['password'])){
             $_SESSION['user']['email'] = $user['email'];
             $_SESSION['user']['password'] = $user['password'];
