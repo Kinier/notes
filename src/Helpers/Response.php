@@ -4,8 +4,8 @@ namespace App\Helpers;
 
 class Response
 {
-    const VIEWS_PATH = __DIR__ . '/../../views/';
-    const ERROR_VIEWS_PATH = __DIR__ . '/../../views/codes/';
+    public const VIEWS_PATH = __DIR__ . '/../../views/';
+    public const ERROR_VIEWS_PATH = __DIR__ . '/../../views/codes/';
 
     public static function json($data)
     {
@@ -15,17 +15,24 @@ class Response
         die();
     }
 
-    public static function jsonOK()
+    public static function jsonOK($data = null)
     {
         header("Content-Type: application/json");
-        echo json_encode(['status' => 'ok']);
+        echo json_encode(['status' => 'ok', 'data' => $data]);
         die();
     }
 
-    public static function jsonError()
+    public static function jsonError($name = "error", $value = "unknown")
     {
         header("Content-Type: application/json");
-        echo json_encode(['status' => 'error']);
+        $answer = [
+            'status' => 'error',
+            "error" => [
+                'id' => $name,
+                'value' => $value
+            ]
+        ];
+        echo json_encode($answer);
         die();
     }
 
@@ -37,8 +44,9 @@ class Response
     public static function page(string $page, array $data = [])
     {
         $page = sprintf("%s%s.view.php", self::VIEWS_PATH, $page);
-            include $page;
+        include $page;
     }
+
     /**
      * @param string $page
      * @param array $data
@@ -49,10 +57,10 @@ class Response
         include $page;
     }
 
-
     public static function redirect($page)
     {
         header("Location: $page");
         exit();
     }
+
 }

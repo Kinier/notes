@@ -32,4 +32,10 @@ class NoteModel{
         $note = $statementObject->fetch();
         return $note;
     }
+
+    public function deleteNoteById($noteId, $userId){
+        $statementObject = $this->connection->prepare("DELETE FROM `note` WHERE `id` = ? AND `user_id` = ?");
+        $result = $statementObject->execute([$noteId, $userId]);
+        return $result;
+    }
 }

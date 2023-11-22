@@ -27,4 +27,7 @@ $router->post('/note/new/create', \App\Controllers\NoteController::class, 'creat
 
 $router->get('/note/preview', \App\Controllers\NoteController::class, 'notePreviewPage',
              ['middlewareFunction' => 'App\Middleware\AuthMiddleware::isUser', 'arg' => 'login']);
+
+$router->get('/note/delete', \App\Controllers\NoteController::class, 'deleteNote',
+             ['middlewareFunction' => 'App\Middleware\AuthMiddleware::isUser', 'arg' => 'login']);
 $router->done();

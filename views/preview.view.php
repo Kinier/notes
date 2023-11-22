@@ -8,6 +8,7 @@ include_once __DIR__ . '/components/head.php'; ?>
     <header>
         <div><a href="/note/new">Create note</a></div>
         <div><a href="/">Main page</a></div>
+        <div><a href="/note/delete?id=<?= $data['note']['id'] ?>">Delete note</a></div>
 
         <div id="exit-account" ><a href="/auth/logout">exit account</a> </div>
     </header>

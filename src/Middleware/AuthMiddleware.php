@@ -9,7 +9,7 @@ class AuthMiddleware{
     {
         if (!isset($_SESSION['user'])){
             header("Location: $location");
-            die();
+            die(); // todo response error
         }
     }
 }

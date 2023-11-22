@@ -11,16 +11,16 @@ class Web
     private string $requestType;
     private string $requestPath;
 
-    private bool $success;
+    private bool $isRouteFound;
 
     public function __construct()
     {
         $this->requestType = $_SERVER['REQUEST_METHOD'];
         $this->requestPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-        $this->success = false;
+        $this->isRouteFound = false;
 
         if ($_SERVER['REQUEST_METHOD'] == "OPTIONS") {
-            $this->success = true;
+            $this->isRouteFound = true;
         }
 
     }
@@ -38,7 +38,7 @@ class Web
 
 
             $controller::$method();
-            $this->success = true;
+            $this->isRouteFound = true;
         }
     }
 
@@ -54,7 +54,7 @@ class Web
             if ($middleware) call_user_func($middleware['middlewareFunction'], $middleware['arg']);
 
             $controller::$method();
-            $this->success = true;
+            $this->isRouteFound = true;
         }
     }
 
@@ -66,7 +66,7 @@ class Web
 
 
             $controller::$method();
-            $this->success = true;
+            $this->isRouteFound = true;
         }
     }
 
@@ -76,7 +76,7 @@ class Web
     public function done()
     {
 
-        if ($this->success === false) {
+        if ($this->isRouteFound === false) {
             $this->sendCustomResponse();
         }
     }

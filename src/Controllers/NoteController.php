@@ -57,4 +57,19 @@ class NoteController{
         Response::page("preview", ['note'=>$note]);
     }
 
+    public static function deleteNote()
+    {
+        $noteId = $_GET['id'];
+        $userId = $_SESSION['user']['id'];
+
+        $db = new Database();
+        $connection = $db->connect();
+        $noteModel = new NoteModel($connection);
+        $result = $noteModel->deleteNoteById($noteId, $userId);
+        if ($result) {
+            Response::redirect("/");
+        }
+        
+    }
+
 }

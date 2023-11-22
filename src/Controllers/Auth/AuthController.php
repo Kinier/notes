@@ -17,7 +17,6 @@ class AuthController
 
         $email = $data['email'];
         $password = $data['password'];
-
         $password = password_hash($password, PASSWORD_BCRYPT);
 
         $db = new Database();
@@ -47,11 +46,12 @@ class AuthController
 
 
 
-
         $db = new Database();
         $connection = $db->connect();
         $userModel = new UserModel($connection);
         $user = $userModel->getUserByEmail($email);
+        
+
         if ($user && password_verify($password, $user['password'])){
             $_SESSION['user']['email'] = $user['email'];
             $_SESSION['user']['password'] = $user['password'];
